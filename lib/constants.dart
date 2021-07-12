@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 const kActiveColor= Color(0xFF1D1E33);
-const kInactiveColor=Color(0xff0A0D22);
+const kInactiveColor=Color(0xFF111328);
 const kLabelStyle= TextStyle(color: Color(0xFF575867,),fontSize: 20);
 const kNumberStyle=TextStyle(color: Colors.white,fontWeight: FontWeight.w900,fontSize: 50.0);
 const kBottomContainerColor=Color(0xffEB1555);
+const kBottomContainerStyle=TextStyle(fontSize: 25,fontWeight: FontWeight.bold);
+const kYourResultStyle=TextStyle(fontSize: 35.0,fontWeight: FontWeight.w800);
+const kStatusStyle=TextStyle(color: Color(0xff2BBD74),fontWeight: FontWeight.bold,fontSize: 20.0);

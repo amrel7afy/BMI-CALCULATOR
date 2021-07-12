@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
+import '../components/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'constants.dart';
-import 'icon_content.dart';
+import '../constants.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/screens/result_page.dart';
+import '../components/bottom_botton.dart';
+import '../components/round_botton.dart';
 
 enum Gender { male, female }
 
@@ -17,7 +20,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.male;
   int height = 180;
-  int weight =70;
+  int weight = 70;
+  int age = 22;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +76,7 @@ class _InputPageState extends State<InputPage> {
             child: ReusableCard(
                 colour: kActiveColor,
                 cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       'HEIGHT',
@@ -126,20 +131,27 @@ class _InputPageState extends State<InputPage> {
                             'WEIGHT',
                             style: kLabelStyle,
                           ),
-                          Text(weight.toString(),style: kNumberStyle,),
+                          Text(
+                            weight.toString(),
+                            style: kNumberStyle,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RoundBotton(icon: FontAwesomeIcons.minus,
-                                onpress: (){
+                              RoundBotton(
+                                icon: FontAwesomeIcons.minus,
+                                onpress: () {
                                   setState(() {
                                     weight--;
                                   });
                                 },
                               ),
-                              SizedBox(width: 10,),
-                              RoundBotton(icon: FontAwesomeIcons.plus,
-                                  onpress: (){
+                              SizedBox(
+                                width: 10,
+                              ),
+                              RoundBotton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onpress: () {
                                     setState(() {
                                       weight++;
                                     });
@@ -151,14 +163,59 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                     child: ReusableCard(
-                        colour: kActiveColor, cardChild: Container()))
+                        colour: kActiveColor,
+                        cardChild: Column(
+                          children: [
+                            Text(
+                              'Age',
+                              style: kLabelStyle,
+                            ),
+                            Text(
+                              age.toString(),
+                              style: kNumberStyle,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                RoundBotton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onpress: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                RoundBotton(
+                                    icon: FontAwesomeIcons.plus,
+                                    onpress: () {
+                                      setState(() {
+                                        age++;
+                                      });
+                                    })
+                              ],
+                            )
+                          ],
+                        )))
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            width: double.infinity,
-            height: 80,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                            bottomContainer: BottomBotton(
+                              label: 'RE-CALCULATE',
+                            ),
+                          )));
+            },
+            child: BottomBotton(
+              label: 'CALCULATE',
+            ),
           )
         ],
       ),
@@ -166,18 +223,6 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundBotton extends StatelessWidget {
-RoundBotton({required this.onpress,required this.icon});
-final Function onpress;
-final IconData icon;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      constraints: BoxConstraints.tightFor(width: 56.0,height: 56.0),
-      fillColor:  Color(0xff212747),
-      elevation: 5,
-      shape: CircleBorder(),
-        onPressed: (){onpress();});
-  }
-}
+
+
+
