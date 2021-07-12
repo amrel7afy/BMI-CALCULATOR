@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 class BottomBotton extends StatelessWidget {
-  BottomBotton({required this.label,});
+  BottomBotton({@required this.label,});
   final String label;
+
 
   @override
   Widget build(BuildContext context) {

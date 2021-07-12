@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class RoundBotton extends StatelessWidget {
-  RoundBotton({required this.onpress, required this.icon});
+  RoundBotton({@required this.onpress, @required this.icon});
   final Function onpress;
   final IconData icon;
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/components/icon_content.dart';
 
 class ReusableCard extends StatelessWidget  {
-  ReusableCard({required this.cardChild,required this.colour});
+  ReusableCard({@required this.cardChild,@required this.colour});
   final Widget cardChild;
   final Color colour;
   @override

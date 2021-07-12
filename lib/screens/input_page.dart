@@ -7,11 +7,11 @@ import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/screens/result_page.dart';
 import '../components/bottom_botton.dart';
 import '../components/round_botton.dart';
+import 'package:bmi_calculator/calcluation_Brain.dart';
 
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
-  const InputPage({Key? key}) : super(key: key);
 
   @override
   _InputPageState createState() => _InputPageState();
@@ -125,7 +125,7 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                       colour: kActiveColor,
                       cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             'WEIGHT',
@@ -204,10 +204,14 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
+              CalculationBrain calc=CalculationBrain(weight: weight, height: height);
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => ResultPage(
+                        result: calc.calculateBMI(),
+                        status: calc.status(),
+                            interpretation: calc.interpretation(),
                             bottomContainer: BottomBotton(
                               label: 'RE-CALCULATE',
                             ),
